@@ -27,7 +27,10 @@
                 <input type="password" placeholder="contraseña" id="basicPassword">
                 <br/>
                 <button id="basicEnviar">Enviar</button>
-                <button id="keyCrear">Crear usuario con token</button>
+                <button id="keyCrear">Crear usuario</button>
+                <br/>
+                <button id="keyConsultar">Obtener token</button>
+                <button id="tmpCrear">Crear token temporal</button>
             </div>
         </form>
         <div id="resultado"></div>
@@ -35,8 +38,9 @@
             <input type="text" placeholder="apiKEY" id="apiKey">
             <br/>
             <button id="apiKeyEnviar">Enviar</button>
-            <div id="resultadoTOKEN"></div>
         </form>
+        <div id="resultadoTOKEN"></div>
+
         <footer>
             <p>
                 <a href="http://daw215.sauces.local/index.html" id="Fnombre">
