@@ -1,39 +1,39 @@
 $(function () {
-    $('#basicEnviar').on('click',llamarAPI);
-    $('#keyCrear').on('click',llamarAPIKEY);
-    $('#keyConsultar').on('click',consultarAPIKEY);
-    $('#apiKeyEnviar').on('click',mirarKEY);
+    $('#basicEnviar').on('click',autenticacionBasica);
+    $('#apiKeyEnviar').on('click',entrarConToken);
+    
+    $('#keyCrear').on('click',crearUsuario);
+    $('#keyConsultar').on('click',consultarToken);
     $('#tmpCrear').on('click',crearTokenTmp);
     
-    function llamarAPI(){
-        $.post("REST.php",{usuario:$('#basicNombre').val(),password:$('#basicPassword').val()}, function(respuesta){
+    function autenticacionBasica(){
+        $.post("basicAutentication.php",{usuario:$('#basicNombre').val(),password:$('#basicPassword').val()}, function(respuesta){
                 $("#resultado").text(respuesta); 
                 camposVacios();
        });
     }
-    
-    function llamarAPIKEY(){
-        $.post("RESTKEY.php",{usuario:$('#basicNombre').val(),password:$('#basicPassword').val(),objetivo:"crear"}, function(respuesta){
-                $("#resultado").text(respuesta); 
-                camposVacios();
-       });
-    }
-    function consultarAPIKEY(){
-        $.post("RESTKEY.php",{usuario:$('#basicNombre').val(),password:$('#basicPassword').val(),objetivo:"obtener"}, function(respuesta){
-                $("#resultado").text(respuesta); 
-                camposVacios();
-       });
-    }
-    
-    function mirarKEY(){
-        $.post("RESTKEY.php",{token:$('#apiKey').val()}, function(respuesta){
+    function entrarConToken(){
+        $.post("entrarPorToken.php",{token:$('#apiKey').val()}, function(respuesta){
                 $("#resultadoTOKEN").text(respuesta); 
                 camposVacios();
        });
     }
     
+    
+    function crearUsuario(){
+        $.post("crearUsuario.php",{usuario:$('#basicNombre').val(),password:$('#basicPassword').val()}, function(respuesta){
+                $("#resultado").text(respuesta); 
+                camposVacios();
+       });
+    }
+    function consultarToken(){
+        $.post("consultarToken.php",{usuario:$('#basicNombre').val(),password:$('#basicPassword').val()}, function(respuesta){
+                $("#resultado").text(respuesta); 
+                camposVacios();
+       });
+    }
     function crearTokenTmp(){
-        $.post("RESTKEY.php",{usuario:$('#basicNombre').val(),password:$('#basicPassword').val(),objetivo:"creartmp"}, function(respuesta){
+        $.post("crearTokenTmp.php",{usuario:$('#basicNombre').val(),password:$('#basicPassword').val()}, function(respuesta){
                 $("#resultado").text(respuesta); 
                 camposVacios();
        });
@@ -41,7 +41,7 @@ $(function () {
     
     function camposVacios(){
         if($('#basicNombre').val() == "" || $('#basicPassword').val() == ""){
-            $("#resultadoTOKEN").text(""); 
+            $("#resultado").text(""); 
         }
     }
 });

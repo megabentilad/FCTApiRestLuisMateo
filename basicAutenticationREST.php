@@ -10,25 +10,21 @@ include_once 'constantes.php';
                 $miDB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 $resultado = $miDB->prepare($consulta);
                 $resultado->execute($parametros);
+                
+                $actualiza = $miDB->prepare($consulta2);
+                $actualiza->execute($parametros);
             } catch (Exception $ex) {
-                echo $ex->getMessage();
                 $resultado = null;
             }
-           
-            if($resultado->rowCount() != 1){
-                echo json_encode("El usuario y la contraseña no se encuentran en la base de datos");
-            }else{
-                //Actualizar num_accesos
-                try{
-                    $miDB = new PDO(CONEXION, USUARIO, PASSWORD);
-                    $miDB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                    $actualiza = $miDB->prepare($consulta2);
-                    $actualiza->execute($parametros);
-                } catch (Exception $ex) {
-                    echo $ex->getMessage();
-                    $actualiza = null;
+            if($resultado != null){
+                if($resultado->rowCount() == 1){
+                    echo json_encode("La aplicacion recibe la informacion del servicio web, en este caso, este texto.");
+                }else{
+                    echo json_encode("La autenticacion fracasa y la aplicación recibe este mensaje de error.");
                 }
-                echo json_encode($resultado->rowCount());
+            }else{
+                echo json_encode("Ocurre un error inesperado en el servidor y la alicacion recibe este aviso.");
             }
+            
         }
     }
