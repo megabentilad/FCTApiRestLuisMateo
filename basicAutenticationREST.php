@@ -23,7 +23,7 @@ include_once 'constantes.php';
                     echo json_encode("La autenticacion fracasa y la aplicación recibe este mensaje de error.");
                 }
             }else{
-                echo json_encode("Ocurre un error inesperado en el servidor y la alicacion recibe este aviso.");
+                echo json_encode("Ocurre un error inesperado en el servidor y la aplicacion recibe este aviso.");
             }
             
         }

@@ -9,7 +9,7 @@ if (isset($_REQUEST["usuario"])) {
             $consulta = "UPDATE tmp_tokens SET token = ?, date = ? WHERE name = '" . $usuario . "';";
             $date = new DateTime();
             $token = hash('sha256', $date->format("Y-m-d H:i:s") . $usuario);
-            $parametros = array(hash('sha256', $token), $date->format("Y-m-d H:i:s"));
+            $parametros = array($token, $date->format("Y-m-d H:i:s"));
 
             $select = "select * from tmp_tokens where name=?";
             $parametros_select = array($usuario);
